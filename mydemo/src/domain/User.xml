@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+ <!-- 总的映射标签mapper namespace：制定命名空间 -->
+<mapper namespace="User">  
+
+	<!-- 创建select查询语句;id:给当前查询语句命名必须唯一；parameterType:参数类型；resultType：返回值类型（可以写包路径或者是alias命名的名字） -->
+    <select id="selectUser" parameterType="int" resultType="u">
+        select * from user where id = #{id}  
+    </select>
+    
+    <!-- 执行查询操作的标签，提供返回类型（user表里的所有记录） -->
+    <select id="selectAll" resultType="u">
+    	select * from user
+    </select>
+    
+    <!-- 添加用户的方法；定义一个参数为User对象的别名u -->
+    <insert id ="insertUser" parameterType="u">
+    	insert into user(id,name) values(#{id},#{name})
+    </insert>
+
+	<update id="updateUser" parameterType="u">
+		update user set name = #{name} where id = #{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="int">
+		delete from user where id = #{id}
+	</delete>
+</mapper> 

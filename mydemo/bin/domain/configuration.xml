@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- xml文件版本声明 -->
+<!-- 文件版本控制，是xml不可少的部分 -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<!-- mybatis的运行环境部署 --> 
+ <configuration>  
+ 	<!-- 给项目中的数据bean命名，创建一个新名字 ，方便在mybatis使用--> 
+     <typeAliases> 
+ 		<!--<package name="domain"/> 把数据domain包下的文件都加载到mybatis里，名字的名称为除去包路径，自己的类名。如com.ljs.demo0531.user;在mybatis里，这个新的名字是use -->
+		<typeAlias alias="u" type="domain.User"></typeAlias><!-- alias给类路径起一个新名字；type为要制定的类路径的全称 -->
+      </typeAliases> 
+      
+     <!-- 配置mybatis运行数据库基本参数 -->
+     <environments default="development">  
+         <environment id="development">  
+             <transactionManager type="JDBC" /> <!-- 以jdbc的方式管理事务 --> 
+             <dataSource type="POOLED"> <!-- 配置连接参数 -->  
+                 <property name="driver" value="com.mysql.jdbc.Driver" />  
+                 <property name="url" value="jdbc:mysql://localhost:3306/my0810"/>  
+                 <property name="username" value="root" />  
+                 <property name="password" value="123456" />  
+             </dataSource>  
+         </environment>  
+     </environments>  
+     
+       <!-- 配置mybatis关联文件（与数据库映射的配置文件） -->
+     <mappers>  
+         <mapper resource="domain/User.xml" />  
+     </mappers>  
+     
+ </configuration> 
